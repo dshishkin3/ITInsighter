@@ -4,3 +4,12 @@ body {
         var(--mantine-color-white)
     ) !important;
 }
+
+.mantine-Input-input {
+    transition: border-color 0.15s ease-in-out !important;
+
+    &:focus {
+        transition: border-color 0.15s ease-in-out;
+        border-color: #6dc9f7 !important;
+    }
+}

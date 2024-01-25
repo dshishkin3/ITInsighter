@@ -1,0 +1,9 @@
+.input {
+    width: 350px;
+    margin-right: 100px;
+
+    &:focus input {
+        border-color: red !important;
+        border: 1px solid red !important;
+    }
+}

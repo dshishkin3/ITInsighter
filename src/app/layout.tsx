@@ -7,7 +7,6 @@ import { Header } from "@/widgets/header";
 import type { Metadata } from "next";
 
 import "@/app/styles/_globals.scss";
-import "@/app/styles/_vars.scss";
 import "@mantine/core/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -7,17 +7,20 @@ export function SearchInput(props: TextInputProps) {
     return (
         <TextInput
             radius="md"
-            size="xl"
-            placeholder="Search"
-            rightSectionWidth={42}
+            size="lg"
+            placeholder="Поиск"
+            rightSectionWidth={48}
             className={styles.input}
             rightSection={
                 <IconSearch
-                    style={{ width: rem(18), height: rem(18) }}
+                    style={{
+                        width: rem(22),
+                        height: rem(22),
+                        cursor: "pointer",
+                    }}
                     stroke={1.5}
                 />
             }
-            styles={{ input: { width: "450px" } }}
             {...props}
         />
     );
