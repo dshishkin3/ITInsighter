@@ -14,8 +14,14 @@ import {
     Stack,
 } from "@mantine/core";
 
+import { FastAuthButton } from "@/shared/ui";
+
+import styles from "./styles.module.scss";
+
+type AuthType = "login" | "register";
+
 export function AuthenticationForm(props: PaperProps) {
-    const [type, toggle] = useToggle(["login", "register"]);
+    const [type, toggle] = useToggle<AuthType>(["login", "register"]);
 
     const form = useForm({
         initialValues: {
@@ -36,17 +42,17 @@ export function AuthenticationForm(props: PaperProps) {
 
     return (
         <Paper radius="md" p="xl" {...props}>
-            <Text size="lg" fw={500}>
-                Welcome to Mantine, {type} with
+            <Text size="xl" fw={700}>
+                Войти с помощью:
             </Text>
 
             <Group grow mb="md" mt="md">
-                <Button>Google</Button>
-                <Button>Twitter</Button>
+                <FastAuthButton type="google" />
+                <FastAuthButton type="twitter" />
             </Group>
 
             <Divider
-                label="Or continue with email"
+                label="Или продолжите по электронной почте"
                 labelPosition="center"
                 my="lg"
             />
@@ -55,8 +61,8 @@ export function AuthenticationForm(props: PaperProps) {
                 <Stack>
                     {type === "register" && (
                         <TextInput
-                            label="Name"
-                            placeholder="Your name"
+                            label="Имя"
+                            placeholder="Ваше имя"
                             value={form.values.name}
                             onChange={(event) =>
                                 form.setFieldValue(
@@ -70,7 +76,7 @@ export function AuthenticationForm(props: PaperProps) {
 
                     <TextInput
                         required
-                        label="Email"
+                        label="Почта"
                         placeholder="hello@mantine.dev"
                         value={form.values.email}
                         onChange={(event) =>
@@ -79,14 +85,17 @@ export function AuthenticationForm(props: PaperProps) {
                                 event.currentTarget.value
                             )
                         }
-                        error={form.errors.email && "Invalid email"}
+                        error={
+                            form.errors.email &&
+                            "Проверьте адрес электронной почты"
+                        }
                         radius="md"
                     />
 
                     <PasswordInput
                         required
-                        label="Password"
-                        placeholder="Your password"
+                        label="Пароль"
+                        placeholder="Ваш пароль"
                         value={form.values.password}
                         onChange={(event) =>
                             form.setFieldValue(
@@ -96,14 +105,14 @@ export function AuthenticationForm(props: PaperProps) {
                         }
                         error={
                             form.errors.password &&
-                            "Password should include at least 6 characters"
+                            "Пароль должен состоять минимум из 6 символов"
                         }
                         radius="md"
                     />
 
                     {type === "register" && (
                         <Checkbox
-                            label="I accept terms and conditions"
+                            label="Обещаю вести себя хорошо"
                             checked={form.values.terms}
                             onChange={(event) =>
                                 form.setFieldValue(
@@ -111,6 +120,7 @@ export function AuthenticationForm(props: PaperProps) {
                                     event.currentTarget.checked
                                 )
                             }
+                            color="#6dc9f7"
                         />
                     )}
                 </Stack>
@@ -124,11 +134,15 @@ export function AuthenticationForm(props: PaperProps) {
                         size="xs"
                     >
                         {type === "register"
-                            ? "Already have an account? Login"
-                            : "Don't have an account? Register"}
+                            ? "Уже имеете аккаунт? Войти"
+                            : "Не имеете аккаунта? Регистрация"}
                     </Anchor>
-                    <Button type="submit" radius="xl">
-                        {upperFirst(type)}
+                    <Button
+                        type="submit"
+                        radius="xl"
+                        className={styles.authButton}
+                    >
+                        {upperFirst(type === "login" ? "Войти" : "Регистрация")}
                     </Button>
                 </Group>
             </form>
