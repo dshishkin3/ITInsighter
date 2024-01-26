@@ -1,14 +1,11 @@
 "use client";
 
 import {
-    HoverCard,
     Group,
     Button,
     UnstyledButton,
     Text,
-    SimpleGrid,
     ThemeIcon,
-    Anchor,
     Divider,
     Center,
     Box,
@@ -18,8 +15,6 @@ import {
     ScrollArea,
     rem,
     useMantineTheme,
-    Flex,
-    Grid,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -34,7 +29,8 @@ import {
 
 import Image from "next/image";
 
-import { SearchInput } from "@/shared/ui";
+import { SearchInput } from "@/features/searchInput";
+import { Auth } from "@/features/auth";
 
 import classes from "./styles.module.css";
 
@@ -113,14 +109,12 @@ export function Header() {
                             ITInsighter
                         </Text>
                     </Group>
-                    <Group>
-                        <SearchInput />
-                    </Group>
+                    <SearchInput />
                     <Button>Write post</Button>
-                    <Group visibleFrom="sm">
+                    {/* <Group visibleFrom="sm">
                         <Button variant="default">Log in</Button>
-                    </Group>
-
+                    </Group> */}
+                    <Auth />
                     <Burger
                         opened={drawerOpened}
                         onClick={toggleDrawer}
