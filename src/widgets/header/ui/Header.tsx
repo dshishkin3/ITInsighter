@@ -31,7 +31,7 @@ import Image from "next/image";
 
 import { SearchInput } from "@/features/searchInput";
 import { Auth } from "@/features/auth";
-
+import { NewPost } from "@/features/newPost/index";
 import classes from "./styles.module.css";
 
 const mockdata = [
@@ -110,7 +110,7 @@ export function Header() {
                         </Text>
                     </Group>
                     <SearchInput />
-                    <Button>Write post</Button>
+                    <NewPost />
                     {/* <Group visibleFrom="sm">
                         <Button variant="default">Log in</Button>
                     </Group> */}
